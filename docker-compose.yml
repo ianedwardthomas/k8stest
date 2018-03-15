@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  makeexpansionjob:
+    build: makeexpansionjob
+    volumes:
+      - ~/.kube:/root/.kube
+  
+  makeworkerjob:
+ 
+    build: makeworkerjob
+    volumes:
+      - ~/.kube:/root/.kube
+
