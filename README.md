@@ -4,8 +4,7 @@
 
 Given a map, create set of sweep values and Kubernetes jobs to process each job.  When finished processing, the jobs will exit.:
 
-		docker-compose build makeexpansionjob | docker-compose run makeexpansionjob | kubectl create -f -
-		kubectl logs -l job-name=job-wq-2
+		docker-compose build makeexpansionjob && docker-compose run makeexpansionjob | kubectl create -f -
 
 Monitor progress:
 
@@ -20,16 +19,21 @@ Then populate queue with the sweep value sets based on the map.
 
 Setup redis service:
 
-        kubectl create -f worker-queue-2/redis-pod.yaml
-		kubectl create -f worker-queue-2redis-service.yaml
+		kubectl create -f work-queue-2/redis-pod.yaml
+		kubectl create -f work-queue-2/redis-service.yaml
 
 Populate queue with sweep parameters:
 
-        docker-compose build makeworkerjob | docker-compose run makeworkerjob
+		kubectl create -f  makeworkerjob.yml
+
+Wait until wokerjob is completed:
+
+		kubectl get pods -a -o wide
+		kubectl logs job/job-maker
 
 Create worker to start processing:
 
-        kubectl create -f job.yaml
+        kubectl create -f work-queue-2/job.yaml
 
 Monitor progress:
 
