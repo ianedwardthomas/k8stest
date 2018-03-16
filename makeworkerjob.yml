@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-maker
+spec:
+  template:
+    metadata:
+      name: job-maker
+    spec:
+      containers:
+      - name: c
+        image: ianedwardthomas/k8stest_makeworkerjob
+      restartPolicy: OnFailure
