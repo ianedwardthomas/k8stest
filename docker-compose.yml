@@ -6,9 +6,5 @@ services:
     volumes:
       - ~/.kube:/root/.kube
   
-  makeworkerjob:
- 
-    build: makeworkerjob
-    volumes:
-      - ~/.kube:/root/.kube
+
 
