@@ -9,7 +9,7 @@ Given a map, create set of sweep values and Kubernetes jobs to process each job.
 Monitor progress:
 
 		kubectl get pods -a -o wide
-		kubectl logs -l job-name=job-wq-2
+                kubectl logs -l jobgroup=jobexample
 
 
 ##  Worker Parallelism from map
@@ -29,7 +29,7 @@ Populate queue with sweep parameters:
 Wait until wokerjob is completed:
 
 		kubectl get pods -a -o wide
-		kubectl logs job/job-maker
+                kubectl logs -l job-name=job-maker`
 
 Create worker to start processing:
 
